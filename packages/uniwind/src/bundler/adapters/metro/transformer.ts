@@ -76,7 +76,7 @@ export const transform = async (
     const isWeb = bundlerConfig.platform === Platform.Web
     const importedStylesheets = new Set<string>()
     const virtualCode = await compileCSS(bundlerConfig, dependency => {
-        if (!isWeb && dependency.endsWith('.css') && !dependency.includes(`${path.sep}node_modules${path.sep}`)) {
+        if (!isWeb && options.dev && dependency.endsWith('.css') && !dependency.includes(`${path.sep}node_modules${path.sep}`)) {
             importedStylesheets.add(dependency)
         }
     })
